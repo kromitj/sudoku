@@ -64,8 +64,8 @@ def display_board(rows, set_pieces)
 	set_pieces.each do |i|
 		rows[i[0]][i[1]] = rows[i[0]][i[1]].to_s.colorize(:light_green) 
 	end	
-	formated = add_row_seps(add_column_seps(get_rows(rows)))	
-	formated.each { |row| puts row.join(" ")}
+	formated = add_row_seps(add_column_seps(get_rows(rows)))
+	formated.each { |row| puts "               " + row.join(" ")}
 end
 
 def add_column_seps(rows)
@@ -109,9 +109,11 @@ while true
 	game_won = false
 	while game_won == false
 		puts "
+	
 	  __                              
 	 (_           _|         |        
 	 __)   |_|   (_|   |_|   |<   |_|
+	 <^>^<^>^<^>^<^>^<^>^<^>^<^>^<^>^
 		".colorize(:cyan)
 		display_board(board, set_pieces)
 		puts ""
