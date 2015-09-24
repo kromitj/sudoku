@@ -1,5 +1,5 @@
-board = [["*",3,2,8,"*","*","*",4,"*"],[8,9,"*",4,2,"*",6,"*","*"],[4,5,"*",7,6,9,"*","*","*"],["*","*",8,2,"*",1,5,"*",3],["*","*",5,7,"*",6,"*",4,"*"],["*","*","*",5,"*",4,8,2,7],[9,"*","*",3,"*","*","*",2,"*"],["*",7,"*","*",1,"*","*","*",8],["*",1,"*","*","*",2,3,"*","*"]]
-game_won = false
+require 'colorize'
+
 def check_horizontal(board)
 	root_rows = [0, 3, 6]
 	root_rows.each do |root_row|
@@ -18,6 +18,16 @@ end # /def
 
 def all_nums?(array)
 	Array(1..9) == array.sort
+end
+
+def create_set_pieces(board)
+	set_pieces = []
+	board.each_with_index do |grid, i|
+		grid.each_with_index do |el, j|
+			set_pieces << [i, j] if board[i][j] != '*'
+		end
+	end
+	return set_pieces
 end
 
 # def display_board(board)
@@ -65,8 +75,11 @@ def get_columns(board)
 	return columns.to_s
 end
 
-def display_board(rows)
-	formated = add_row_seps(add_column_seps(get_rows(rows)))
+def display_board(rows, set_pieces)
+	set_pieces.each do |i|
+		rows[i[0]][i[1]] = rows[i[0]][i[1]].to_s.colorize(:red) 
+	end
+	formated = add_row_seps(add_column_seps(get_rows(rows)))	
 	formated.each { |row| puts row.join(" ")}
 end
 
@@ -104,16 +117,21 @@ def set_move(move, board)
 	return board
 end
 
-while game_won == false
-	puts "
-  __                              
- (_           _|         |        
- __)   |_|   (_|   |_|   |<   |_|
-	"
-	display_board(board)
-	puts ""
-	user_input = get_next_move
-	set_move(user_input, board)
+while true
+	board = [["*",3,2,8,"*","*","*",4,"*"],[8,9,"*",4,2,"*",6,"*","*"],[4,5,"*",7,6,9,"*","*","*"],["*","*",8,2,"*",1,5,"*",3],["*","*",5,7,"*",6,"*",4,"*"],["*","*","*",5,"*",4,8,2,7],[9,"*","*",3,"*","*","*",2,"*"],["*",7,"*","*",1,"*","*","*",8],["*",1,"*","*","*",2,3,"*","*"]]
+	set_pieces = create_set_pieces(board)
+	game_won = false
+	while game_won == false
+		puts "
+	  __                              
+	 (_           _|         |        
+	 __)   |_|   (_|   |_|   |<   |_|
+		".colorize(:green)
+		display_board(board, set_pieces)
+		puts ""
+		user_input = get_next_move
+		set_move(user_input, board)
+	end
 end
 # puts get_columns(board)
 
