@@ -30,21 +30,6 @@ def create_set_pieces(board)
 	return set_pieces
 end
 
-# def display_board(board)
-# 	rows = []
-# 	root_rows = [0, 3, 6]
-# 	root_rows.each do |root_row|
-# 		sub_rows = [0, 3, 6]
-# 		sub_rows.each do |sub_row|
-# 			current_row = board[root_row][sub_row..sub_row + 2] + 
-# 					      board[root_row + 1][sub_row..sub_row + 2] + 
-# 			              board[root_row + 2][sub_row..sub_row + 2]	
-# 			rows << current_row	
-# 		end # /sub_rows
-# 	end
-# 	return rows.to_s
-# end
-
 def get_rows(board)
 	rows = []
 	root_rows = [0, 3, 6]
@@ -77,8 +62,8 @@ end
 
 def display_board(rows, set_pieces)
 	set_pieces.each do |i|
-		rows[i[0]][i[1]] = rows[i[0]][i[1]].to_s.colorize(:red) 
-	end
+		rows[i[0]][i[1]] = rows[i[0]][i[1]].to_s.colorize(:light_green) 
+	end	
 	formated = add_row_seps(add_column_seps(get_rows(rows)))	
 	formated.each { |row| puts row.join(" ")}
 end
@@ -118,6 +103,7 @@ def set_move(move, board)
 end
 
 while true
+	puts String.colors
 	board = [["*",3,2,8,"*","*","*",4,"*"],[8,9,"*",4,2,"*",6,"*","*"],[4,5,"*",7,6,9,"*","*","*"],["*","*",8,2,"*",1,5,"*",3],["*","*",5,7,"*",6,"*",4,"*"],["*","*","*",5,"*",4,8,2,7],[9,"*","*",3,"*","*","*",2,"*"],["*",7,"*","*",1,"*","*","*",8],["*",1,"*","*","*",2,3,"*","*"]]
 	set_pieces = create_set_pieces(board)
 	game_won = false
@@ -126,7 +112,7 @@ while true
 	  __                              
 	 (_           _|         |        
 	 __)   |_|   (_|   |_|   |<   |_|
-		".colorize(:green)
+		".colorize(:cyan)
 		display_board(board, set_pieces)
 		puts ""
 		user_input = get_next_move
