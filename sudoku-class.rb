@@ -88,7 +88,7 @@ class Sudoku
 	end
 
 	def get_next_move
-		puts "Enter Next Move:(Grid, Index, Number)"
+		puts "Enter Next Move:(Grid, Index, Number ex: 0,0,1 or 0, 0, 1)"
 		@user_input = gets.chomp.split(",")
 	end
 
@@ -101,6 +101,31 @@ class Sudoku
 	def set_move
 		if move_valid? == true
 			@board[@user_input[0].to_i][@user_input[1].to_i] = @user_input[2].to_i 
+		end
+	end
+
+	def game_complete?
+		rows = get_rows
+		puts rows.to_s
+		columns = get_columns
+		rows.each do |row|
+			puts "row complete #{row.all? {|i| i.is_a?(Integer) }}" 
+			if (row.all? {|i| i.is_a?(Integer) }) && (Array(1..9) == row.sort)
+				return true
+			else return false
+			end
+		end
+		columns.each do |column| 
+			if (column.all? {|i| i.is_a?(Integer) }) && (Array(1..9) == column.sort)
+				return true
+			else return false
+			end
+		end
+		@board.each do |grid| 
+			if (grid.all? {|i| i.is_a?(Integer) }) && (Array(1..9) == grid.sort)
+				return true
+			else return false
+			end
 		end
 	end
 
