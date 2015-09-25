@@ -8,4 +8,4 @@ TODO
   * Add undo function
   * Figure out how to fix the game_complete? function so the program knows when a player has finished the game
   * Create a library of sudoku levels
-  * Memorize how to spell sudoku :)
+  * Memorize the spelling of sudoku :)
