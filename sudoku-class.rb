@@ -106,10 +106,10 @@ class Sudoku
 
 	def game_complete?
 		rows = get_rows
-		puts rows.to_s
+		# puts rows.to_s
 		columns = get_columns
 		rows.each do |row|
-			puts "row complete #{row.all? {|i| i.is_a?(Integer) }}" 
+			# puts "row complete #{row.all? {|i| i.is_a?(Integer) }}" 
 			if (row.all? {|i| i.is_a?(Integer) }) && (Array(1..9) == row.sort)
 				return true
 			else return false
