@@ -93,7 +93,7 @@ class Sudoku
 	end
 
 	def move_valid?
-		value_at_move = @board[@user_input[0].to_i][@user_input[2].to_i]	
+		value_at_move = @board[@user_input[0].to_i][@user_input[1].to_i]	
 		return true if @board[@user_input[0].to_i][@user_input[1].to_i] == "*"
 		return false
 	end
