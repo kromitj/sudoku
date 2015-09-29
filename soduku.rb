@@ -90,7 +90,7 @@ def get_next_move
 	user_input = gets.chomp.split(",")
 end
 def move_valid?(move, board)
-	value_at_move = board[move[0].to_i][move[2].to_i]	
+	value_at_move = board[move[0].to_i][move[1].to_i]	
 	return true if board[move[0].to_i][move[1].to_i] == "*"
 	return false
 end
